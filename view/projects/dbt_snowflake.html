@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+    <title> DHIRAJ KAFLE </title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+
+    <link rel="icon" href="../../images/avatar.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/avatar.png" type="image/x-icon">
+
+    <noscript>
+        <link rel="stylesheet" href="../../assets/css/noscript.css" />
+    </noscript>
+
+
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            /* padding: 5px; */
+            overflow: auto;
+
+        }
+
+        code {
+            font-family: "SFMono-Regular", "Menlo", "Consolas", "PT Mono", "Liberation Mono", Courier, monospace;
+            /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+            /* font-family: Arial, Helvetica, sans-serif; */
+            font-weight: 600;
+            font-size: small;
+            display: block;
+            /* padding: 5px; */
+            color: #272727;
+
+        }
+    </style>
+
+</head>
+
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="../../cv/cv.pdf" class="logo" target="_blank"> View CV </a>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+
+            <ul class="links">
+                <!-- <li><a href="../../index.html"> Projects </a></li> -->
+                <li><a href="../.."> Projects </a></li>
+
+                <li><a href="../skills.html"> Skills </a></li>
+                <li><a href="../about.html"> About </a></li>
+                <li class="active"><a href="." style="pointer-events: none"> Detail </a></li>
+            </ul>
+
+        </nav>
+
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Post -->
+            <section class="post">
+
+                <p style="text-align: right; padding: 0 0 0rem 0; margin: 0 0 0rem 0;">
+                    <a href="https://github.com/47dhiraj/DBT-Analytics-Project"
+                        class="icon brands fa fa-github fa-2x" target="_blank"><span class="label">GitHub</span>
+                    </a>
+                </p>
+
+                <header class="major">
+                    <!-- <span class="date">December 20, 2023</span> -->
+                    <h1>
+                        DBT Analytics Project <br />
+                    </h1>
+
+                    <p>
+                        using SQL, DBT & Snowflake warehouse
+                    </p>
+
+                </header>
+
+
+                <div class="image main"><img src="../../images/projects/features/dbt_snowflake.jpeg" alt="Detail Image" />
+                </div>
+
+
+                <p style="text-align: center;">
+
+                    Used <b> SQL query </b> in <b> both  </b> DBT & Snowflake platform. <br />
+
+                    Used <b> Data Build Tool(DBT) </b> to <b> Transform the Data </b>.<br />
+
+                    <b> Snowflake Warehouse </b> to <b> store </b> both <b> raw & transformed data</b>.<br />
+
+                </p>
+
+
+                <h4>SQL query executed in Snowflake database 🚀 </h4>
+                <pre>
+
+                    <code style="line-height: 1.8;">
+                        # To create a Warehouse:
+                        create or replace warehouse transformation;
+
+
+                        # To create Databases:
+                        create database raw;
+                        create database analytics;
+
+
+                        # Create a schema:
+                        create schema raw.hitman_shop;
+
+                        
+                        # To Create 'PRODUCTS' Table inside 'raw' Database:
+                        create or replace TABLE RAW.HITMAN_SHOP.PRODUCTS (
+                            PRODUCT_NAME STRING,
+                            PRODUCT_ID INTEGER,
+                            PRICE STRING,
+                            EXPIRATION_DATE DATE,
+                            CATEGORY STRING
+                        );
+
+
+                        # To Create 'CUSTOMERS' Table inside 'raw' Database:
+                        create or replace TABLE RAW.HITMAN_SHOP.CUSTOMERS (
+                            CUSTOMER_ID INTEGER,
+                            FIRST_NAME STRING,
+                            LAST_NAME STRING,
+                            EMAIL STRING,
+                            BIRTHDATE DATE,
+                            ADDRESS STRING,
+                            CC FLOAT,
+                            CC_TYPE STRING
+                        );
+
+
+                        # To Create 'ORDERS' Table inside 'raw' Database:
+                        create or replace TABLE RAW.HITMAN_SHOP.ORDERS (
+                            ORDER_ID INTEGER,
+                            CUSTOMER_ID INTEGER,
+                            PRODUCT_ID INTEGER,
+                            QUANTITY INTEGER,
+                            ORDER_DATE DATE,
+                            TOTAL_PRICE FLOAT,
+                            SHIPPING_ADDRESS STRING
+                        );
+
+
+                        # Query to retrieve records/rows from tables:
+                        select * FROM raw.hitman_shop.products limit 50;
+                        select * FROM raw.hitman_shop.customers limit 50;
+                        select * FROM raw.hitman_shop.orders limit 50;
+
+
+                        # Optional: Query to DROP Unnecessry tables:
+                        DROP TABLE ANALYTICS.AGENT_SHOP.MY_FIRST_DBT_MODEL;
+                        DROP TABLE ANALYTICS.AGENT_SHOP.MY_SECOND_DBT_MODEL;
+                    </code>
+
+
+                </pre>
+
+
+
+            </section>
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer id="footer">
+
+            <section class="split contact">
+
+                <section class="alt">
+                    <h3 style="color: #53595f;">Address</h3>
+                    <p style="color: #4b4847;">Maitidevi<br />
+                        Kathmandu, Nepal</p>
+                </section>
+
+                <section>
+                    <h3 style="color: #53595f;">Phone</h3>
+                    <p><a href="#" style="color: #4b4847;"> +977 9847122181 </a></p>
+                </section>
+
+                <section>
+                    <h3 style="color: #53595f;">Email</h3>
+                    <p><a href="#" style="color: #4b4847;">dhirajkafle553@gmail.com</a></p>
+                </section>
+
+                <section>
+                    <h3 style="color: #53595f;">Social</h3>
+
+                    <ul class="icons alt">
+                        <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a>
+                        </li>
+                        <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a>
+                        </li>
+                        <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+                    </ul>
+
+                </section>
+
+            </section>
+
+
+            <section>
+
+                <form method="post" action="#">
+
+                    <div class="fields">
+                        <div class="field">
+                            <label for="name" style="color: #53595f;">Name</label>
+                            <input type="text" name="name" id="name" />
+                        </div>
+                        <div class="field">
+                            <label for="email" style="color: #53595f;">Email</label>
+                            <input type="text" name="email" id="email" />
+                        </div>
+                        <div class="field">
+                            <label for="message" style="color: #53595f;">Message</label>
+                            <textarea name="message" id="message" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <ul class="actions">
+                        <li><input type="submit" value="Send Message" disabled /></li>
+                    </ul>
+
+                </form>
+
+            </section>
+
+
+        </footer>
+
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul>
+                <li>&copy; 2023 - Dhiraj-TheDataEngineer</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>
