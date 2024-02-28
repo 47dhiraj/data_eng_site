@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+    <title> DHIRAJ KAFLE </title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+
+    <link rel="icon" href="../../images/avatar.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../images/avatar.png" type="image/x-icon">
+
+    <noscript>
+        <link rel="stylesheet" href="../../assets/css/noscript.css" />
+    </noscript>
+
+
+    <style>
+        pre {
+            background-color: #f4f4f4;
+            /* padding: 5px; */
+            overflow: auto;
+
+        }
+
+        code {
+            font-family: "SFMono-Regular", "Menlo", "Consolas", "PT Mono", "Liberation Mono", Courier, monospace;
+            /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+            /* font-family: Arial, Helvetica, sans-serif; */
+            font-weight: 600;
+            font-size: small;
+            display: block;
+            /* padding: 5px; */
+            color: #272727;
+
+        }
+    </style>
+
+</head>
+
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="../../cv/cv.pdf" class="logo" target="_blank"> View CV </a>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+
+            <ul class="links">
+                <!-- <li><a href="../../index.html"> Projects </a></li> -->
+                <li><a href="../.."> Projects </a></li>
+
+                <li><a href="../skills.html"> Skills </a></li>
+                <li><a href="../about.html"> About </a></li>
+                <li class="active"><a href="." style="pointer-events: none"> Detail </a></li>
+            </ul>
+
+        </nav>
+
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Post -->
+            <section class="post">
+
+                <p style="text-align: right; padding: 0 0 0rem 0; margin: 0 0 0rem 0;">
+                    <a href="https://github.com/47dhiraj/ML_FastAPI_Deployment"
+                        class="icon brands fa fa-github fa-2x" target="_blank"><span class="label">GitHub</span>
+                    </a>
+                </p>
+
+                <header class="major">
+
+                    <!-- <span class="date">December 20, 2023</span> -->
+
+                    <h1>
+                        ML model Deployment <br />
+                    </h1>
+
+                    <p>
+                        using FastAPI <br />
+                    </p>
+
+                </header>
+
+
+                <div class="image main"><img src="../../images/projects/features/fastapi_ml.png" alt="Detail Image" />
+                </div>
+
+
+                <p style="text-align: center;">
+
+                    Used <b> FastAPI </b> framework to build <b> API endpoints </b>.<br />
+
+                    Implemented <b> Docker </b> to <b> containerize </b> the application.<br /><br />
+                </p>
+
+
+                <h4>FastAPI model code 🚀 </h4>
+                <pre>
+
+                    <code style="line-height: 1.8;">
+                        import pandas as pd
+                        # import requests
+
+
+                        def ml_recommendation_model(movie: str, rating: int):
+
+                            # # loading the data to use correlation algorithm
+                            # movies = pd.read_csv('./data/movies.csv')
+                            # ratings = pd.read_csv('./data/ratings.csv')
+
+                            # # data manipulation & data cleaning
+                            # ratings = pd.merge(movies, ratings).drop(['genres','timestamp'], axis=1)
+                            # user_ratings = ratings.pivot_table(index=['userId'], columns=['title'], values='rating')
+                            # user_ratings = user_ratings.dropna(thresh=10, axis=1).fillna(0)
+                            # item_similarity_df = user_ratings.corr(method='pearson')
+
+                            ## To create .pkl file from Pandas Dataframe
+                            # item_similarity_df.to_pickle('item_similarity_df.pkl')
+
+
+                            # Directly Loading pre-created .pkl file/model for more efficient web-page loading
+                            item_similarity_df = pd.read_pickle('./data/item_similarity_df.pkl')
+
+                            # Function to get similar movies
+                            def get_similar_movies(movie_name, user_rating):
+                                similar_score = item_similarity_df[movie_name] * (user_rating - 2.5)
+                                similar_score = similar_score.sort_values(ascending= False)
+                                return similar_score
+
+                            # Function to check & remove, if the recommended movies is already seen
+                            def check_seen(movie, seen_movie):
+                                if movie == seen_movie:
+                                    return True
+                                else:
+                                    return False
+
+                            # Empty Dataframe
+                            similar_movies = pd.DataFrame() 
+                            
+                            # Empty similar movies list
+                            similar_movie_list = []
+
+                            try:
+                                
+                                # Getting similar movies
+                                similar_movies = similar_movies._append(get_similar_movies(movie, rating), ignore_index= True)
+
+                                all_recommend = similar_movies.sum().sort_values(ascending= False)
+
+
+                                # Logic to check & remove, if the recommended movies is already seen
+                                check_title = movie
+                                i = 0
+
+                                for recommended_movie, score in all_recommend.items():
+                                    if not check_seen(recommended_movie, check_title):
+                                        similar_movie_list.append(recommended_movie)
+                                    else:
+                                        pass
+
+                                    i = i + 1
+                                    if i >= 30:
+                                        break
+
+                                # return the recommended/similar movies
+                                return similar_movie_list
+
+                            except:
+                                # return empty list
+                                return similar_movie_list
+
+
+                    </code>
+
+                </pre>
+
+
+            </section>
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer id="footer">
+
+            <section class="split contact">
+
+                <section class="alt">
+                    <h3 style="color: #53595f;">Address</h3>
+                    <p style="color: #4b4847;">Maitidevi<br />
+                        Kathmandu, Nepal</p>
+                </section>
+
+                <section>
+                    <h3 style="color: #53595f;">Phone</h3>
+                    <p><a href="#" style="color: #4b4847;"> +977 9847122181 </a></p>
+                </section>
+
+                <section>
+                    <h3 style="color: #53595f;">Email</h3>
+                    <p><a href="#" style="color: #4b4847;">dhirajkafle553@gmail.com</a></p>
+                </section>
+
+                <section>
+                    <h3 style="color: #53595f;">Social</h3>
+
+                    <ul class="icons alt">
+                        <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a>
+                        </li>
+                        <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a>
+                        </li>
+                        <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+                    </ul>
+
+                </section>
+
+            </section>
+
+
+            <section>
+
+                <form method="post" action="#">
+
+                    <div class="fields">
+                        <div class="field">
+                            <label for="name" style="color: #53595f;">Name</label>
+                            <input type="text" name="name" id="name" />
+                        </div>
+                        <div class="field">
+                            <label for="email" style="color: #53595f;">Email</label>
+                            <input type="text" name="email" id="email" />
+                        </div>
+                        <div class="field">
+                            <label for="message" style="color: #53595f;">Message</label>
+                            <textarea name="message" id="message" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <ul class="actions">
+                        <li><input type="submit" value="Send Message" disabled /></li>
+                    </ul>
+
+                </form>
+
+            </section>
+
+
+        </footer>
+
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul>
+                <li>&copy; 2023 - Dhiraj-TheDataEngineer</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../../assets/js/browser.min.js"></script>
+    <script src="../../assets/js/breakpoints.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+
+    <script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

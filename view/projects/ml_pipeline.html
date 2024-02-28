@@ -94,7 +94,7 @@
                 </header>
 
 
-                <div class="image main"><img src="../../images/projects/features/data_pipeline.png" alt="Detail Image" />
+                <div class="image main"><img src="../../images/projects/features/ml_airflow.png" alt="Detail Image" />
                 </div>
 
 
@@ -111,9 +111,7 @@
 
                 <h4>Airlfow code 🚀 </h4>
                 <pre>
-
                     <code style="line-height: 1.8;">
-
                         from datetime import datetime, timedelta
                         from airflow import DAG
 
@@ -139,7 +137,7 @@
                         # function to train model
                         def train_recommendation_model(**kwargs):
                             
-                            # Loading .csv datasets
+                            # Loading .csv datasets from github link
                             movies = pd.read_csv('https://raw.githubusercontent.com/47dhiraj/Movie-Recommendation-System-Django-and-ML/main/dataset/movies.csv')
                             ratings = pd.read_csv('https://raw.githubusercontent.com/47dhiraj/Movie-Recommendation-System-Django-and-ML/main/dataset/ratings.csv')
 
@@ -147,7 +145,6 @@
                             ratings = pd.merge(movies, ratings).drop(['genres','timestamp'], axis=1) 
                             user_ratings = ratings.pivot_table(index=['userId'], columns=['title'], values='rating')
                             user_ratings = user_ratings.dropna(thresh=10, axis=1).fillna(0)
-
 
                             # using pearson coorelation algorithm
                             item_similarity_df = user_ratings.corr(method='pearson')
